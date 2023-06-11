@@ -1,0 +1,17 @@
+/* Carousel Image Style */
+#myCarousel .carousel-inner img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+}
+
+
+/* Background for Gallery Section */
+.gallery-bg {
+    background-color: #f7f7f7;
+}
+
+.card-text {
+    text-decoration: none;
+  }
+  

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="isim_soyisim">İsim Soyisim:</label>
+                <input type="text" class="form-control" id="isim_soyisim" name="isim_soyisim" required>
+            </div>
+            <div class="form-group">
+                <label for="telefon">Telefon Numarası:</label>
+                <input type="text" class="form-control" id="telefon" name="telefon" required placeholder="5435254503" pattern="[0-9]+" maxlength="10">
+            </div>
+            <div class="form-group">
+                <label for="adet">Adet:</label>
+                <input type="number" class="form-control" id="adet" name="adet" min="1" required>
+            </div>
+            <div class="form-group">
+                <label for="spiral">Spiral:</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="spiral" id="spiral-evet" value="evet" required>
+                    <label class="form-check-label" for="spiral-evet">
+                        Evet
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="spiral" id="spiral-hayir" value="hayir" required>
+                    <label class="form-check-label" for="spiral-hayir">
+                        Hayır
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="arkalik">Tek Taraflı/Arkalı Önlü:</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="arkalik" id="tek-tarafli" value="tek_tarafli" required>
+                    <label class="form-check-label" for="tek-tarafli">
+                        Tek Taraflı
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="arkalik" id="arkali-onlu" value="arkali_onlu" required>
+                    <label class="form-check-label" for="arkali-onlu">
+                        Arkalı Önlü
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="renk">Renk:</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="renk" id="siyah" value="siyah" required>
+                    <label class="form-check-label" for="siyah">
+                        Siyah - Beyaz
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="renk" id="renkli" value="renkli" required>
+                    <label class="form-check-label" for="renkli">
+                        Renkli
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <br>
+                <label for="dosya">Dosya Yükle <span class="text-danger">*</span></label>
+                <input type="file" class="form-control-file" id="dosya" name="dosya" multiple required>
+            </div>            
+            <br>
+            <button type="submit" class="btn btn-primary">Sipariş Ver</button>
+            <div>
+                <br>
+                <label for="{{ form.notlar.id_for_label }}">Notlar:</label>
+                {{ form.notlar }}
+            </div>            
+        </form>
+        <br> <br>
+        <div id="success-message" class="d-none">
+            <div class="alert alert-success text-center py-3 mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#28a745" class="bi bi-check-circle-fill mb-2" viewBox="0 0 16 16">
+                    <path d="M8 0A8 8 0 1 0 8 16A8 8 0 1 0 8 0ZM6.5 11L4 8.5L5.41 7.09L6.5 8.17L10.59 4L12 5.41L6.5 11Z"/>
+                </svg>
+                <p class="mb-0">Siparişiniz Başarıyla Gönderildi</p>
+            </div>
+        </div>       
+    </div>
+
+    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
