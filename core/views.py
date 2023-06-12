@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Resim, Fotograf, Siparis
 from django.contrib.admin.models import LogEntry, ADDITION
 from django.contrib.contenttypes.models import ContentType
-from .forms import SiparisForm
+from .forms import SiparisForm, OrderForm
+
 
 def home(request):
     resimler = Resim.objects.all()
@@ -70,3 +71,16 @@ def resim_detay(request, id):
         
     context = {'resim': resim, 'form': form}
     return render(request, 'resim_detay.html', context)
+
+
+def order(request):
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = form.save()  # Siparişi kaydet
+            calculated_price = order.calculate_price()  # Fiyatı hesapla
+            return render(request, 'order_confirmation.html', {'order': order, 'calculated_price': calculated_price})
+    else:
+        form = OrderForm()
+    return render(request, 'order.html', {'form': form})
+

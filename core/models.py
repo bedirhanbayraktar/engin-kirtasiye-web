@@ -48,3 +48,39 @@ class Siparis(models.Model):
         return "Sipariş #{} - {}".format(self.id, self.resim.baslik)
 
     
+
+class Order(models.Model):
+    name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=20)
+    double_sided = models.CharField(max_length=20)
+    color_option = models.CharField(max_length=20)
+    binding_option = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
+    sayfa_sayisi = models.IntegerField(null=True)
+
+
+    def calculate_price(self):
+        price = 0
+
+        if self.double_sided == 'Evet':
+            price += 1 * self.sayfa_sayisi # Arklı-önlü seçeneği için 1 TL ekleniyor
+        else:
+            price += 2 * self.sayfa_sayisi # Tek taraflıysa sayfası 2 TL.
+
+        if self.color_option == 'Renkli':
+            price += 2 * self.sayfa_sayisi # Renkli çıktı seçeneği için 1 TL ekleniyor
+
+        if self.color_option == 'Siyah-Beyaz':
+            price += 0  # Renkli çıktı seçeneği için 1 TL ekleniyor
+
+        # Ciltleme seçeneklerine göre fiyat hesaplanıyor
+        if self.binding_option == 'Zımba':
+            price += 0
+        elif self.binding_option == 'Sprial':
+            price += 25
+        elif self.binding_option == 'Karton Kapak':
+            price += 35
+        elif self.binding_option == 'Bez Cilt':
+            price += 160
+         
+        return price

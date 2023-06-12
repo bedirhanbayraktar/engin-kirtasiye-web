@@ -15,9 +15,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'home' %}">Ana Sayfa</a>
+                        <a class="nav-link" href="{% url 'home' %}">Ana Sayfa</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'about' %}">About</a>
@@ -28,14 +28,33 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'contact' %}">İletişim</a>
                     </li>
-
+                    <!-- sOLDA OLACAKLAR BURAYA. SAĞDA OLACAKLAR AŞAĞIYA DAHA SONRA BAKACAĞIM. -->
                 </ul>
-            </div>
+                <ul class="navbar-nav ms-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'order' %}">Sipariş</a>
+                    </li>
+                </ul>
+            </div>                        
         </div>
     </nav>
 
     <main class="container mt-4 flex-fill">
-        {% block content %}{% endblock %}
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Sipariş formu -->
+                {% block content %}{% endblock %}
+            </div>
+            <div class="col-lg-4">
+                <!-- Sağ tarafa yerleştirmek istediğiniz içerik BURAYA BİR BAKACAĞIM HİÇ FENA OLMADI.-->  
+                <div class="card">
+                    <div class="card-body">
+                        Sipariş Özeti veya Diğer Bilgiler
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     
     <footer class="py-3 mt-auto" style="background-color: #E09F7D; color: black;">

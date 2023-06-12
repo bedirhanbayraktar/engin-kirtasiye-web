@@ -1,7 +1,6 @@
 from django.contrib import admin, messages
-from .models import Resim, Fotograf, Siparis
 from django.utils.html import format_html
-
+from .models import Resim, Fotograf, Siparis, Order
 
 @admin.register(Resim)
 class ResimAdmin(admin.ModelAdmin):
@@ -11,7 +10,7 @@ class ResimAdmin(admin.ModelAdmin):
 class FotografAdmin(admin.ModelAdmin):
     list_display = ('baslik', 'fotograf', 'yayinlanma_tarihi')
 
-
+@admin.register(Siparis)
 class SiparisAdmin(admin.ModelAdmin):
     list_display = ['resim', 'adet', 'spiral', 'arkalik', 'renk', 'dosya', 'isim_soyisim', 'telefon', 'notlar']
     list_filter = ['resim', 'spiral', 'arkalik', 'renk']
@@ -28,5 +27,16 @@ class SiparisAdmin(admin.ModelAdmin):
         qs = super().get_queryset(request)
         return qs.exclude(isim_soyisim=None, telefon=None, notlar=None)
 
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['name', 'phone_number', 'double_sided', 'color_option', 'binding_option', 'created_at', 'sayfa_sayisi']
+    list_filter = ['double_sided', 'color_option', 'binding_option']
+    search_fields = ['name', 'phone_number']
+    actions = ['calculate_selected_orders']
 
-admin.site.register(Siparis, SiparisAdmin)
+    def calculate_selected_orders(self, request, queryset):
+        total_price = sum(order.calculate_price() for order in queryset)
+        self.message_user(request, f"Seçili siparişlerin toplam fiyatı: {total_price} TL", level=messages.INFO)
+
+    calculate_selected_orders.short_description = "Seçili siparişlerin fiyatını hesapla"
+

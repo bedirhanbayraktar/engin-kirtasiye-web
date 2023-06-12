@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Sipariş Onayı{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <h1 class="text-center mb-4">Sipariş Onayı</h1>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Sipariş Bilgileri</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>İsim Soyisim:</strong> {{ order.name }}</li>
+                        <li class="list-group-item"><strong>Telefon Numarası:</strong> {{ order.phone_number }}</li>
+                        <li class="list-group-item"><strong>Arkalı Önlü:</strong> {{ order.double_sided }}</li>
+                        <li class="list-group-item"><strong>Renk Seçeneği:</strong> {{ order.color_option }}</li>
+                        <li class="list-group-item"><strong>Ciltleme:</strong> {{ order.binding_option }}</li>
+                        <li class="list-group-item"><strong>Sayfa sayısı:</strong> {{ order.sayfa_sayisi }}</li>
+                    </ul>
+                    <p class="mt-4">Toplam Fiyat: {{ calculated_price }} TL</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
