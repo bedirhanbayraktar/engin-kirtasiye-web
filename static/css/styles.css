@@ -15,3 +15,27 @@
     text-decoration: none;
   }
   
+
+/* İletişim bilgileri yan penceresi arka planı */
+.contact-info.offcanvas {
+    background-color: #f7f7f7; /* Arka plan rengi */
+    background-image: radial-gradient(#000000 1px, transparent 1px); /* Noktaları oluşturan gradient */
+    background-size: 23px 23px; /* Nokta boyutu */
+    padding: 20px; /* İçerik alanı iç kenar boşluğu */
+    display: flex; /* İçeriği yatayda ortalamak için */
+    justify-content: center; /* İçeriği yatayda ortalamak için */
+    align-items: center; /* İçeriği dikeyde ortalamak için */
+    min-height: 100vh; /* İçeriği tam ekrana yaymak için */
+}
+
+.contact-info.offcanvas .offcanvas-body {
+    color: #000000; /* Metin rengi */
+    margin-top: 20px; /* İçeriği biraz daha aşağıya almak için */
+}
+
+
+
+
+
+
+

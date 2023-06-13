@@ -1,16 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Engin Kırtasiye{% block title %}{% endblock %}</title>
-
+    
+    <style>
+        .navbar-brand img {
+            max-height: 65px; /* Logo resminin maksimum yüksekliği */
+        }
+    </style>
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #E09F7D;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">Engin Kırtasiye</a>
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'img/logo.png' %}" alt="Logo">
+            </a>            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,32 +40,44 @@
                     <!-- sOLDA OLACAKLAR BURAYA. SAĞDA OLACAKLAR AŞAĞIYA DAHA SONRA BAKACAĞIM. -->
                 </ul>
                 <ul class="navbar-nav ms-auto">
-                    
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'order' %}">Sipariş</a>
                     </li>
-                </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="contact-info-toggle">
+                            Burada
+                        </a>
+                    </li>                    
+                </ul>                
             </div>                        
         </div>
     </nav>
 
     <main class="container mt-4 flex-fill">
-        <div class="row">
-            <div class="col-lg-8">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
                 <!-- Sipariş formu -->
                 {% block content %}{% endblock %}
             </div>
-            <div class="col-lg-4">
-                <!-- Sağ tarafa yerleştirmek istediğiniz içerik BURAYA BİR BAKACAĞIM HİÇ FENA OLMADI.-->  
-                <div class="card">
-                    <div class="card-body">
-                        Sipariş Özeti veya Diğer Bilgiler
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
+
+    <div id="contact-info" class="offcanvas offcanvas-end contact-info">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">İletişim Bilgileri</h5>
+            
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <img src="{% static 'img/logo.png' %}" alt="Logo" style="max-width: 230px;">
+            <p>Telefon: 123456789</p>
+            <p>E-posta: info@example.com</p>
+            <!-- Diğer iletişim bilgilerini buraya ekleyebilirsiniz -->
+        </div>
+    </div>
     
+    
+
     <footer class="py-3 mt-auto" style="background-color: #E09F7D; color: black;">
         <div class="container text-center text-lg-start">
             © 1990 Engin Kırtasiye
@@ -65,5 +86,8 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </body>
 </html>

@@ -49,4 +49,11 @@ $('.carousel-control-next').click(function(event) {
     $('.carousel-indicators li.active:first').removeClass('active');
 });
 
-    
+
+ // Telefon ikonuna tıklandığında offcanvas bölmesini aç
+ document.getElementById('contact-info-toggle').addEventListener('click', function() {
+    var offcanvasElement = document.getElementById('contact-info');
+    var offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+    offcanvas.show();
+});
+
