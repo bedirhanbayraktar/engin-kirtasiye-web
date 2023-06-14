@@ -20,4 +20,5 @@
     background-color: #000000; /* Arka plan rengi */
     background-image: radial-gradient(#FFFFFF 0.3rem, transparent 0.3rem); /* Noktaları oluşturan gradient */
     background-size: 1rem 1rem; /* Nokta boyutu */
+    -webkit-text-fill-color: #FFFFFF;
 }

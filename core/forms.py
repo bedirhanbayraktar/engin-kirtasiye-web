@@ -20,7 +20,9 @@ class OrderForm(forms.ModelForm):
     color_option = forms.ChoiceField(choices=[('Siyah-Beyaz', 'Siyah-Beyaz'), ('Renkli', 'Renkli')], widget=forms.RadioSelect, label='Renk Seçeneği')
     binding_option = forms.ChoiceField(choices=[('Zımba', 'Zımba'), ('Sprial', 'Sprial'), ('Karton Kapak', 'Karton Kapak'), ('Bez Cilt', 'Bez Cilt'), ('hiçbiri', 'Hiçbiri')], label='Ciltleme Seçeneği')
     sayfa_sayisi = forms.IntegerField(label='Sayfa Sayısı', required=True)
-    
+
+
+
     class Meta:
         model = Order
         fields = ['name', 'phone_number', 'double_sided', 'color_option', 'binding_option', 'sayfa_sayisi']

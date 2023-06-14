@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('form').on('submit', function(event) {
+    $('form').submit(function(event) {
         event.preventDefault();
 
         var formData = new FormData(this);
@@ -14,20 +14,15 @@ $(document).ready(function() {
                 $('#success-message').removeClass('d-none');
                 setTimeout(function() {
                     $('#success-message').addClass('d-none');
-                    location.reload();
+                    $('form')[0].reset();  // Formu sıfırla
                 }, 2000);
             }
         });
     });
 });
 
-$(document).ready(function() {
-    $('#telefon').on('keypress', function(event) {
-        if (event.which < 48 || event.which > 57) {
-            event.preventDefault();
-        }
-    });
-})
+
+
 
 $(document).ready(function() {
     $('#myCarousel').carousel({
@@ -50,10 +45,15 @@ $('.carousel-control-next').click(function(event) {
 });
 
 
- // Telefon ikonuna tıklandığında offcanvas bölmesini aç
  document.getElementById('contact-info-toggle').addEventListener('click', function() {
     var offcanvasElement = document.getElementById('contact-info');
     var offcanvas = new bootstrap.Offcanvas(offcanvasElement);
     offcanvas.show();
+    
+    // Offcanvas bölmesi kapatıldığında overlay bileşenini temizle
+    offcanvasElement.addEventListener('hidden.bs.offcanvas', function() {
+        document.body.classList.remove('offcanvas-open');
+    });
 });
+
 

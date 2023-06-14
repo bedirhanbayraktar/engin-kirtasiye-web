@@ -27,7 +27,7 @@ def resim_detay(request, id):
         form = SiparisForm(request.POST, request.FILES)
         if form.is_valid():
             adet = form.cleaned_data['adet']
-            spiral = form.cleaned_data['spiral']  # Update this line
+            spiral = form.cleaned_data['spiral']  
             arkalik = form.cleaned_data['arkalik']
             renk = form.cleaned_data['renk']
             dosya = form.cleaned_data['dosya']
