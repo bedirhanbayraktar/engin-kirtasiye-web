@@ -36,13 +36,14 @@ class Fotograf(models.Model):
 class Siparis(models.Model):
     resim = models.ForeignKey(Resim, on_delete=models.CASCADE)
     adet = models.IntegerField()
-    spiral = models.CharField(max_length=5)
+    #spiral = models.CharField(max_length=5)
+    cilt = models.CharField(max_length=20, default='Hiçbiri')
     arkalik = models.CharField(max_length=20)
     renk = models.CharField(max_length=20)
     dosya = models.FileField(upload_to='siparisler/')
     isim_soyisim = models.CharField(max_length=100)
     telefon = models.CharField(max_length=10)
-    notlar = models.CharField(max_length=200, null=True, blank=True)
+    notlar = models.CharField(max_length=200, null=True)
 
     def __str__(self):
         return "Sipariş #{} - {}".format(self.id, self.resim.baslik)
@@ -57,7 +58,8 @@ class Order(models.Model):
     binding_option = models.CharField(max_length=20)
     created_at = models.DateTimeField(auto_now_add=True)
     sayfa_sayisi = models.IntegerField(null=True)
-
+    deneme = models.IntegerField(null=True)
+    dosya = models.FileField(upload_to='files/')
 
     def calculate_price(self):
         price = 0

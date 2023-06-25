@@ -3,6 +3,7 @@ from .models import Resim, Fotograf, Siparis
 from django.contrib.admin.models import LogEntry, ADDITION
 from django.contrib.contenttypes.models import ContentType
 from .forms import SiparisForm, OrderForm
+import requests
 
 
 def home(request):
@@ -27,7 +28,8 @@ def resim_detay(request, id):
         form = SiparisForm(request.POST, request.FILES)
         if form.is_valid():
             adet = form.cleaned_data['adet']
-            spiral = form.cleaned_data['spiral']  
+            #spiral = form.cleaned_data['spiral']  
+            cilt = form.cleaned_data['cilt']
             arkalik = form.cleaned_data['arkalik']
             renk = form.cleaned_data['renk']
             dosya = form.cleaned_data['dosya']
@@ -35,11 +37,13 @@ def resim_detay(request, id):
             telefon = form.cleaned_data['telefon']
             notlar = form.cleaned_data['notlar']
 
+
             # Yeni bir sipariş öğesi oluşturma
             siparis = Siparis(
                 resim=resim,
                 adet=adet,
-                spiral=spiral,
+                cilt=cilt,
+                #spiral=spiral,
                 arkalik=arkalik,
                 renk=renk,
                 dosya=dosya
@@ -52,6 +56,10 @@ def resim_detay(request, id):
             if notlar:
                 siparis.notlar = notlar
                 siparis.save()
+            else:
+                siparis.notlar = notlar
+                siparis.save()
+            
             
             # Yeni bir girdi oluşturarak admin paneline bildirim gönderme
             content_type = ContentType.objects.get_for_model(siparis)
@@ -83,4 +91,23 @@ def order(request):
     else:
         form = OrderForm()
     return render(request, 'order.html', {'form': form})
+
+
+
+def get_unsplash_photos(query, count=10):
+    access_key = 'y9VBdkq6PLv6D4zFHmcO7uT7RnFlTh86sLZp3HB-EaA'
+    url = f'https://api.unsplash.com/search/photos/?client_id={access_key}&query={query}&per_page={count}'
+    response = requests.get(url)
+    data = response.json()
+    photo_urls = []
+    for photo in data['results']:
+        photo_urls.append(photo['urls']['regular'])
+    return photo_urls
+
+def your_view(request):
+    book_covers = get_unsplash_photos('book cover fabric', count=10)
+    pencils = get_unsplash_photos('pencil', count=15)
+    notebooks = get_unsplash_photos('notebook', count=12)
+
+    return render(request, 'your_template.html', {'book_covers': book_covers, 'pencils': pencils, 'notebooks': notebooks})
 

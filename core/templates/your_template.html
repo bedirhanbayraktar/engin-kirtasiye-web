@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Kırtasiye Ürünleri{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Kırtasiye Ürünleri</h1>
+
+        <h2>Bez Cilt Tarzı Ciltlemeler</h2>
+        <div class="product-grid">
+            {% for book_cover in book_covers %}
+                <div class="product-card">
+                    <img src="{{ book_cover }}" alt="Bez Cilt Tarzı Ciltleme" width="200" height="200">
+                    <p>Bez Cilt Tarzı Ciltleme</p>
+                </div>
+            {% endfor %}
+        <br>
+        </div>
+
+        <h2>Kalemler</h2>
+        <div class="product-grid">
+            {% for pencil in pencils %}
+                <div class="product-card">
+                    <img src="{{ pencil }}" alt="Kalem" width="200" height="200">
+                    <p>Kalem</p>
+                </div>
+            {% endfor %}
+        <br>
+        </div>
+
+        <h2>Defterler</h2>
+        <div class="product-grid">
+            {% for notebook in notebooks %}
+                <div class="product-card">
+                    <img src="{{ notebook }}" alt="Defter" width="200" height="200">
+                    <p>Defter</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 20px;
+            justify-items: center;
+            margin-top: 30px;
+        }
+    
+        .product-card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+        }
+    
+        .product-card img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+    </style>
+    
+    
+{% endblock %}

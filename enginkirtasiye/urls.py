@@ -13,6 +13,7 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('resim/<int:id>/', views.resim_detay, name='resim_detay'),
     path('order/', order, name='order'),
+    path('your_template', views.your_view, name='your_view'),
 ]
 
 if settings.DEBUG:

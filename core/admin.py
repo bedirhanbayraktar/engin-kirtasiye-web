@@ -12,8 +12,8 @@ class FotografAdmin(admin.ModelAdmin):
 
 @admin.register(Siparis)
 class SiparisAdmin(admin.ModelAdmin):
-    list_display = ['resim', 'adet', 'spiral', 'arkalik', 'renk', 'dosya', 'isim_soyisim', 'telefon', 'notlar']
-    list_filter = ['resim', 'spiral', 'arkalik', 'renk']
+    list_display = ['resim', 'adet', 'arkalik', 'renk', 'dosya', 'isim_soyisim', 'telefon', 'notlar', 'cilt']
+    list_filter = ['resim', 'arkalik', 'renk']
     search_fields = ['resim__baslik', 'dosya']
 
     def save_model(self, request, obj, form, change):
@@ -25,13 +25,13 @@ class SiparisAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
-        return qs.exclude(isim_soyisim=None, telefon=None, notlar=None)
+        return qs.exclude(isim_soyisim=None, telefon=None)
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['name', 'phone_number', 'double_sided', 'color_option', 'binding_option', 'created_at', 'sayfa_sayisi']
+    list_display = ['name', 'phone_number', 'double_sided', 'color_option', 'binding_option', 'created_at', 'sayfa_sayisi', 'dosya']
     list_filter = ['double_sided', 'color_option', 'binding_option']
-    search_fields = ['name', 'phone_number']
+    search_fields = ['name', 'phone_number', 'dosya']
     actions = ['calculate_selected_orders']
 
     def calculate_selected_orders(self, request, queryset):

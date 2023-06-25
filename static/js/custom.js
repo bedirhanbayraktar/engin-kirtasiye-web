@@ -1,25 +1,30 @@
-$(document).ready(function() {
-    $('form').submit(function(event) {
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('form').addEventListener('submit', function(event) {
         event.preventDefault();
-
-        var formData = new FormData(this);
-
-        $.ajax({
-            url: '',
-            method: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                $('#success-message').removeClass('d-none');
+        
+        const formData = new FormData(this);
+        
+        axios.post('', formData)
+            .then(function(response) {
+                document.querySelector('#success-message').classList.remove('d-none');
                 setTimeout(function() {
-                    $('#success-message').addClass('d-none');
-                    $('form')[0].reset();  // Formu sıfırla
+                    document.querySelector('#success-message').classList.add('d-none');
+                    document.querySelector('form').reset(); // Formu sıfırla
                 }, 2000);
-            }
-        });
+            })
+            .catch(function(error) {
+                console.error(error);
+            });
     });
 });
+
+
+
+
+
+
+
+
 
 
 
@@ -30,30 +35,90 @@ $(document).ready(function() {
     });
 });
 
-$('.carousel-control-prev').click(function(event) {
-    event.preventDefault(); // Sayfa yenilenmesini engeller
-    $('#myCarousel').carousel('prev');
-    $('.carousel-indicators li.active').prev().addClass('active');
-    $('.carousel-indicators li.active:last').removeClass('active');
-});
 
-$('.carousel-control-next').click(function(event) {
-    event.preventDefault(); // Sayfa yenilenmesini engeller
-    $('#myCarousel').carousel('next');
-    $('.carousel-indicators li.active').next().addClass('active');
-    $('.carousel-indicators li.active:first').removeClass('active');
-});
+$(document).ready(function() {
+    $('#contact-info-toggle').on('click', function() {
+        var offcanvasElement = document.getElementById('contact-info');
+        var offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+        offcanvas.show();
 
-
- document.getElementById('contact-info-toggle').addEventListener('click', function() {
-    var offcanvasElement = document.getElementById('contact-info');
-    var offcanvas = new bootstrap.Offcanvas(offcanvasElement);
-    offcanvas.show();
-    
-    // Offcanvas bölmesi kapatıldığında overlay bileşenini temizle
-    offcanvasElement.addEventListener('hidden.bs.offcanvas', function() {
-        document.body.classList.remove('offcanvas-open');
+        // Offcanvas bölmesi kapatıldığında overlay bileşenini temizle
+        offcanvasElement.addEventListener('hidden.bs.offcanvas', function() {
+            document.body.classList.remove('offcanvas-open');
+        });
     });
-});
 
+    $('#myCarousel').carousel({
+        interval: 10000
+    });
+
+    $('.carousel-control-prev').click(function(event) {
+        event.preventDefault(); // Sayfa yenilenmesini engeller
+        $('#myCarousel').carousel('prev');
+        $('.carousel-indicators li.active').prev().addClass('active');
+        $('.carousel-indicators li.active:last').removeClass('active');
+    });
+
+    $('.carousel-control-next').click(function(event) {
+        event.preventDefault(); // Sayfa yenilenmesini engeller
+        $('#myCarousel').carousel('next');
+        $('.carousel-indicators li.active').next().addClass('active');
+        $('.carousel-indicators li.active:first').removeClass('active');
+    });
+
+    $('.navbar-toggler').click(function() {
+        $('.navbar-collapse').slideToggle(300);
+        setTimeout(function() {
+            test();
+        });
+    });
+
+    function test() {
+        var tabsNewAnim = $('#navbarSupportedContent');
+        var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
+        var activeItemNewAnim = tabsNewAnim.find('.active');
+        var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+        var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+        var itemPosNewAnimTop = activeItemNewAnim.position();
+        var itemPosNewAnimLeft = activeItemNewAnim.position();
+        $('.hori-selector').css({
+            top: itemPosNewAnimTop.top + 'px',
+            left: itemPosNewAnimLeft.left + 'px',
+            height: activeWidthNewAnimHeight + 'px',
+            width: activeWidthNewAnimWidth + 'px'
+        });
+        $('#navbarSupportedContent').on('click', 'li', function(e) {
+            $('#navbarSupportedContent ul li').removeClass('active');
+            $(this).addClass('active');
+            var activeWidthNewAnimHeight = $(this).innerHeight();
+            var activeWidthNewAnimWidth = $(this).innerWidth();
+            var itemPosNewAnimTop = $(this).position();
+            var itemPosNewAnimLeft = $(this).position();
+            $('.hori-selector').css({
+                top: itemPosNewAnimTop.top + 'px',
+                left: itemPosNewAnimLeft.left + 'px',
+                height: activeWidthNewAnimHeight + 'px',
+                width: activeWidthNewAnimWidth + 'px'
+            });
+        });
+    }
+
+    setTimeout(function() {
+        test();
+    });
+
+    $(window).on('resize', function() {
+        setTimeout(function() {
+            test();
+        }, 500);
+    });
+
+    // Sayfaya eklenen kodlar
+    var path = window.location.pathname.split("/").pop();
+    if (path === '') {
+        path = 'index.html';
+    }
+    var target = $('#navbarSupportedContent ul li a[href="' + path + '"]');
+    target.parent().addClass('active');
+});
 

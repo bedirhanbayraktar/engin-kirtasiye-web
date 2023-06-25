@@ -6,11 +6,11 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <h1 class="text-center mb-4">Sipariş Ver</h1>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-primary">Sipariş Ver</button>
-            </form>
+            </form>                      
         </div>
     </div>
 {% endblock %}

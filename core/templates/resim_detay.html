@@ -21,17 +21,35 @@
                 <input type="number" class="form-control" id="adet" name="adet" min="1" required>
             </div>
             <div class="form-group">
-                <label for="spiral">Spiral:</label>
+                <label for="cilt">Cilt:</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="spiral" id="spiral-evet" value="evet" required>
-                    <label class="form-check-label" for="spiral-evet">
-                        Evet
+                    <input class="form-check-input" type="radio" name="cilt" id="cilt-zimba" value="Zımba" required>
+                    <label class="form-check-label" for="cilt-zimba">
+                        Zımba
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="spiral" id="spiral-hayir" value="hayir" required>
-                    <label class="form-check-label" for="spiral-hayir">
-                        Hayır
+                    <input class="form-check-input" type="radio" name="cilt" id="cilt-sprial" value="Sprial" required>
+                    <label class="form-check-label" for="cilt-sprial">
+                        Sprial
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cilt" id="cilt-karton" value="Karton Kapak" required>
+                    <label class="form-check-label" for="cilt-karton">
+                        Karton Kapak
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cilt" id="cilt-bez" value="Bez Cilt" required>
+                    <label class="form-check-label" for="cilt-bez">
+                        Bez Cilt
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cilt" id="cilt-hicbiri" value="Hiçbiri" required>
+                    <label class="form-check-label" for="cilt-hicbiri">
+                        Hiçbiri
                     </label>
                 </div>
             </div>
@@ -71,12 +89,12 @@
                 <input type="file" class="form-control-file" id="dosya" name="dosya" multiple required>
             </div>            
             <br>
-            <button type="submit" class="btn btn-primary">Sipariş Ver</button>
-            <div>
-                <br>
-                <label for="{{ form.notlar.id_for_label }}">Notlar:</label>
-                {{ form.notlar }}
+            <div class="form-group">
+                <label for="notlar">Not:</label>
+                <input type="text" class="form-control" id="notlar" name="notlar">
             </div>            
+            <br>
+            <button type="submit" class="btn btn-primary">Sipariş Ver</button>                
         </form>
         <br> <br>
         <div id="success-message" class="d-none">
@@ -91,6 +109,7 @@
 
     <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="{% static 'js/custom.js' %}"></script>
 
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
