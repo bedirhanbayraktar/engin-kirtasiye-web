@@ -1,27 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('form').addEventListener('submit', function(event) {
+    var form = document.querySelector('form');
+    var submitButton = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', function(event) {
         event.preventDefault();
-        
-        const formData = new FormData(this);
-        
+
+        if (form.classList.contains('submitted')) {
+            return false;
+        }
+
+        form.classList.add('submitted');
+        submitButton.disabled = true; // Gönderme düğmesini devre dışı bırak
+
+        const formData = new FormData(form);
+
         axios.post('', formData)
             .then(function(response) {
                 document.querySelector('#success-message').classList.remove('d-none');
                 setTimeout(function() {
                     document.querySelector('#success-message').classList.add('d-none');
-                    document.querySelector('form').reset(); // Formu sıfırla
+                    form.reset(); // Formu sıfırla
+                    form.classList.remove('submitted');
+                    submitButton.disabled = false; // Gönderme düğmesini etkinleştir
                 }, 2000);
             })
             .catch(function(error) {
                 console.error(error);
+                form.classList.remove('submitted');
+                submitButton.disabled = false; // Gönderme düğmesini etkinleştir
             });
     });
 });
-
-
-
-
-
 
 
 

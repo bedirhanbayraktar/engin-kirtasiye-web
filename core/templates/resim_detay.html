@@ -6,7 +6,7 @@
     <div class="container">
         
 
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" action="{% url 'resim_detay' id=resim.id %}" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
                 <label for="isim_soyisim">İsim Soyisim:</label>
@@ -47,8 +47,8 @@
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="cilt" id="cilt-hicbiri" value="Hiçbiri" required>
-                    <label class="form-check-label" for="cilt-hicbiri">
+                    <input class="form-check-input" type="radio" name="cilt" id="cilt-hiçbiri" value="hiçbiri" required>
+                    <label class="form-check-label" for="cilt-hiçbiri">
                         Hiçbiri
                     </label>
                 </div>
