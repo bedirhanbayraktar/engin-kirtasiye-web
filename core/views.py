@@ -9,10 +9,11 @@ import requests
 def home(request):
     resimler = Resim.objects.all()
     fotograf_listesi = Fotograf.objects.order_by('-yayinlanma_tarihi')
-    return render(request, 'home.html', {'resimler': resimler, 'fotograf_listesi': fotograf_listesi})
+    en_son_yuklenen_resim = resimler.first()  # En son yüklenen resimi alıyor..
+    return render(request, 'home.html', {'resimler': resimler, 'fotograf_listesi': fotograf_listesi, 'en_son_yuklenen_resim': en_son_yuklenen_resim})
 
-def about(request):
-    return render(request, 'about.html')
+def hakkımızda(request):
+    return render(request, 'hakkımızda.html')
 
 def products(request):
     return render(request, 'products.html')

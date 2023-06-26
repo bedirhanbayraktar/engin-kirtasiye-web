@@ -8,7 +8,7 @@ from core.views import order
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('about/', views.about, name='about'),
+    path('hakkımızda/', views.hakkımızda, name='hakkımızda'),
     path('products/', views.products, name='products'),
     path('contact/', views.contact, name='contact'),
     path('resim/<int:id>/', views.resim_detay, name='resim_detay'),
