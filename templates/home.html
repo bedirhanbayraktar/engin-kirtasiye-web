@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="page-content">
+   <!-- BN Slider 1 -->
+   <div class="holder fullwidth full-nopad mt-0">
+      <div class="container">
+          <div class="bnslider-wrapper">
+              <div class="bnslider bnslider--lg keep-scale" id="bnslider-001" data-slick='{"arrows": true, "dots": true}' data-autoplay="false" data-speed="5000" data-start-width="1920" data-start-height="845" data-start-mwidth="480" data-start-mheight="578">
+                  {% for fotograf in fotograf_listesi %}
+                  <div class="bnslider-slide bnslide-sport-{{ forloop.counter }}">
+                      <div class="bnslider-image-mobile" style="background-image: url('{{ fotograf.fotograf.url }}');"></div>
+                      <div class="bnslider-image" style="background-image: url('{{ fotograf.fotograf.url }}');"></div>
+                      <div class="bnslider-text-wrap bnslider-overlay">
+                          <div class="bnslider-text-content txt-right txt-center">
+                              <div class="bnslider-text-content-flex container">
+                                  <div class="bnslider-vert">
+                                      <div class="bnslider-text bnslider-text--lg" data-animation="fadeInRight" data-animation-delay="0.2s">{{ fotograf.baslik }}</div>
+                                      <!--<div class="bnslider-text bnslider-text--xxs" data-animation="fadeInRight" data-animation-delay="1s" style="margin-top: 1.6em;">TILL DECEMBER 15</div>-->
+                                      <div class="btn-wrap" data-animation="fadeIn" data-animation-delay="1s"><a href="{% url 'contact' %}" class="btn-decor">Adres Bilgileri<span class="btn-line"></span></a></div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+              <div class="bnslider-loader">
+                  <div class="loader-wrap">
+                      <div class="dots">
+                          <div class="dot one"></div>
+                          <div class="dot two"></div>
+                          <div class="dot three"></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="bnslider-arrows container">
+                  <div></div>
+              </div>
+              <div class="bnslider-dots container"></div>
+          </div>
+      </div>
+   </div>
+   
+   <!-- //BN Slider 1 -->
+   <div class="holder">
+       <div class="container">
+           <div class="row vert-margin-middle mobile-sm-pad">
+               <div class="col-6 col-md-3"><a href="#" class="collection-box">
+                       <div class="collection-box-image"><img src="images/placeholder.png" data-src="images/home-sport/collection-sport-1.png" class="lazyload" alt=""></div>
+                       <div class="collection-box-text">
+                           <h4 class="collection-box-title">SPORT</h4>
+                           <h3 class="collection-box-sub">SHOES</h3>
+                       </div>
+                   </a></div>
+               <div class="col-6 col-md-3"><a href="#" class="collection-box">
+                       <div class="collection-box-image"><img src="images/placeholder.png" data-src="images/home-sport/collection-sport-2.png" class="lazyload" alt=""></div>
+                       <div class="collection-box-text">
+                           <h4 class="collection-box-title">SPORT</h4>
+                           <h3 class="collection-box-sub">CLOTHES</h3>
+                       </div>
+                   </a></div>
+               <div class="col-6 col-md-3"><a href="#" class="collection-box">
+                       <div class="collection-box-image"><img src="images/placeholder.png" data-src="images/home-sport/collection-sport-3.png" class="lazyload" alt=""></div>
+                       <div class="collection-box-text">
+                           <h4 class="collection-box-title">SPORT</h4>
+                           <h3 class="collection-box-sub">BAGS</h3>
+                       </div>
+                   </a></div>
+               <div class="col-6 col-md-3"><a href="#" class="collection-box">
+                       <div class="collection-box-image"><img src="images/placeholder.png" data-src="images/home-sport/collection-sport-4.png" class="lazyload" alt=""></div>
+                       <div class="collection-box-text">
+                           <h4 class="collection-box-title">SPORT</h4>
+                           <h3 class="collection-box-sub">EQUIPMENT</h3>
+                       </div>
+                   </a></div>
+           </div>
+       </div>
+   </div>
+
+   <div class="holder global_width">
+       <div class="container">
+           <div class="row bnr-grid">
+               <div class="col-md-6"><a href="#" class="bnr-wrap">
+                       <div class="bnr bnr28 bnr--style-1 bnr--right bnr--middle bnr-hover-scale" data-fontratio="5.55"><img src="images/placeholder.png" data-src="images/home-sport/banner-sport-1.png" class="lazyload" alt=""> <span class="bnr-caption"><span class="bnr-text-wrap"><span class="bnr-text1">new collection</span> <span class="bnr-text2">men’s sportswear</span> <span class="btn-decor bnr-btn">shop now<span class="btn-line"></span></span></span></span></div>
+                   </a></div>
+               <div class="col-md-6"><a href="#" class="bnr-wrap">
+                       <div class="bnr bnr28 bnr--style-1 bnr--left bnr--middle bnr-hover-scale" data-fontratio="5.55"><img src="images/placeholder.png" data-src="images/home-sport/banner-sport-2.png" class="lazyload" alt=""> <span class="bnr-caption"><span class="bnr-text-wrap"><span class="bnr-text1">new collection</span> <span class="bnr-text2">women’s sportswear</span> <span class="btn-decor bnr-btn">shop now<span class="btn-line"></span></span></span></span></div>
+                   </a></div>
+           </div>
+       </div>
+   </div>
+   <div class="holder">
+       <div class="container">
+           <h2 class="h1-style text-center">New Arrival</h2>
+           <div class="prd-grid prd-carousel js-prd-carousel-tab slick-arrows-aside-simple slick-arrows-mobile-lg data-to-show-4 data-to-show-md-3 data-to-show-sm-3 data-to-show-xs-2 js-product-isotope-sm" id="tabCarousel-01" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
+            {% for resim in resimler %}
+            <div class="prd prd-has-loader prd prd-new prd-popular">
+               <div class="prd-inside">
+                   <div class="prd-img-area"><a href="{% url 'resim_detay' resim.id %}" class="prd-img"><img src="{{ resim.resim_dosyasi.url }}" data-srcset="{{ resim.resim_dosyasi.url }}" alt="{{ resim.baslik }}" class="js-prd-img lazyload"></a>
+                       <div class="gdw-loader"></div>
+                   </div>
+                   <div class="prd-info">
+                       <div class="prd-tag prd-hidemobile"><a href="#">{{ resim.etiket }}</a></div>
+                       <h2 class="prd-title"><a href="{% url 'resim_detay' resim.id %}">{{ resim.baslik }}</a></h2>
+                       <div class="prd-rating prd-hidemobile"><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star fill"></i><i class="icon-star"></i></div>
+
+                       <div class="prd-hover">
+                           <div class="prd-action">
+                               <form action="#"><input type="hidden"> <button class="btn" data-fancybox data-src="#modalCheckOut"><i class="icon icon-handbag"></i><span>Sipariş Ver</span></button></form>
+                               <div class="prd-links"><a href="#" class="icon-eye prd-qview-link js-qview-link" data-fancybox data-src="#modalQuickView"></a></div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+            </div>
+            {% endfor %}
+           </div>
+       </div>
+   </div>
+   <div class="holder fullwidth fullwidth--nopad">
+       <div class="container holder-bg-13">
+           <div class="row shop-features-style2-1">
+               <div class="col-sm-4"><a href="#" class="shop-feature">
+                       <div class="shop-feature-icon"><i class="icon-box3"></i></div>
+                       <div class="shop-feature-text">
+                           <div class="text1">Free worlwide delivery</div>
+                           <div class="text2">Lorem ipsum dolor sit amet</div>
+                       </div>
+                   </a></div>
+               <div class="col-sm-4"><a href="#" class="shop-feature">
+                       <div class="shop-feature-icon"><i class="icon-arrow-left-circle"></i></div>
+                       <div class="shop-feature-text">
+                           <div class="text1">100% money back guarantee</div>
+                           <div class="text2">Lorem ipsum dolor sit amet</div>
+                       </div>
+                   </a></div>
+               <div class="col-sm-4"><a href="#" class="shop-feature">
+                       <div class="shop-feature-icon"><i class="icon-call"></i></div>
+                       <div class="shop-feature-text">
+                           <div class="text1">24/7 customer support</div>
+                           <div class="text2">Lorem ipsum dolor sit amet</div>
+                       </div>
+                   </a></div>
+           </div>
+       </div>
+   </div>
+
+   <div class="holder fullwidth full-nopad">
+       <div class="container"><a href="#" class="bnr-wrap">
+               <div class="bnr bnr34 bnr--style-6 bnr--left bnr--middle bnr-hover-scale" data-fontratio="11.4"><img src="images/placeholder.png" data-src="images/home-sport/banner-sport-3.jpg" class="lazyload" alt=""> <span class="bnr-caption container"><span class="bnr-text-wrap"><span class="bnr-text1">summer collections</span> <span class="bnr-text2">65% OFF</span> <span class="btn-decor btn-decor--sm bnr-btn">shop now<span class="btn-line"></span></span></span></span></div>
+           </a></div>
+   </div>
+</div>
+
+<!-- Bootstrap ve özel stil dosyalarını ekleyin -->
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<!-- İlgili JavaScript dosyalarını yükleyin -->
+<script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+<link rel="shortcut icon" href="#" />
+{% endblock %}
